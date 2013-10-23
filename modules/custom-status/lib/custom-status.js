@@ -3,6 +3,14 @@ jQuery(document).ready(function() {
 	jQuery('label[for=post_status]').show();
 	jQuery('#post-status-display').show();
 
+	jQuery('.curtime .edit-timestamp').click(function() {
+			jQuery('#mm').val(jQuery('#cur_mm').val());
+			jQuery('#jj').val(jQuery('#cur_jj').val());
+			jQuery('#aa').val(jQuery('#cur_aa').val());
+			jQuery('#hh').val(jQuery('#cur_hh').val());
+			jQuery('#mn').val(jQuery('#cur_mn').val());
+	});
+
 	if ( jQuery('select[name="_status"]').length == 0 ) { // not on quick edit
 		
 		if ( current_user_can_publish_posts || ( current_status == 'publish' && current_user_can_edit_published_posts ) ) {
