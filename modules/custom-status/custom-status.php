@@ -1327,11 +1327,13 @@ class EF_Custom_Status extends EF_Module {
 		// We're only going to normalize the post_date_gmt if the user hasn't set a custom date in the metabox
 		// and the current post_date_gmt isn't already future or past-ized
 		foreach ( array('aa', 'mm', 'jj', 'hh', 'mn') as $timeunit ) {
-			if ( !empty( $_POST['hidden_' . $timeunit] ) && (($_POST['hidden_' . $timeunit] != $_POST[$timeunit] ) || ( $_POST['hidden_' . $timeunit] != $_POST['cur_' . $timeunit] )) ) {
+			//if ( !empty( $_POST['hidden_' . $timeunit] ) && (($_POST['hidden_' . $timeunit] != $_POST[$timeunit] ) || ( $_POST['hidden_' . $timeunit] != $_POST['cur_' . $timeunit] )) ) {
+			if( !empty( $_POST['hidden_' . $timeunit] ) && $_POST[$timeunit] != $_POST['hidden_' . $timeunit] ) {
 				$ef_normalize_post_date_gmt = false;
 				break;
 			}
 		}
+
 		if ( $ef_normalize_post_date_gmt )
 			if ( in_array( $data['post_status'], $status_slugs ) )
 				$data['post_date_gmt'] = '0000-00-00 00:00:00';
